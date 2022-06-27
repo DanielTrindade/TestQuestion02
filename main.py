@@ -16,7 +16,7 @@ def calcMedia(dados):
   return media
 
 #função para encontrar o menor valor no mês
-def calcMenor(dados):
+def menorValor(dados):
   #retorna o primeiro valor que não é 0.0(Zero)
   menor = dados[0]
   pos = 0
@@ -32,7 +32,7 @@ def calcMenor(dados):
   return menor
 
 #função para encontrar o maior valor no mês
-def calcMaior(dados):
+def maiorValor(dados):
   #retorna o primeiro valor que não é 0.0(Zero)
   maior = dados[0]
   pos = 0
@@ -47,12 +47,22 @@ def calcMaior(dados):
 
   return maior
 
+#função que calcula os dias em que o valor foi maior que a média mensal.
+def maioresQueAMedia(dados,media):
+  for dado in dados:
+    if dado['valor'] != 0.0:
+      if(dado['valor'] > media):
+        print('O valor no dia',dado['dia'],'é maior que a média')
+
 
 if(__name__ == '__main__'):
   with open("dados.json", encoding='utf-8') as meu_json:
       dados = json.load(meu_json)
   media = calcMedia(dados)
-  menor = calcMenor(dados)
-  maior = calcMaior(dados)
+  menor = menorValor(dados)
+  maior = maiorValor(dados)
+  print(menor)
   print(maior)
   print(media)
+  maioresQueAMedia(dados,media)
+  
