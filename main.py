@@ -7,11 +7,9 @@ def calcMedia(dados):
   media = 0.0
   for dado in dados:
     if dado['valor'] != 0.0:
-      print(dado['valor'])
       dias += 1;
       acumulador +=dado['valor']
   #calculo da media
-  print(acumulador,dias)
   media = acumulador / dias
   return media
 
@@ -49,10 +47,12 @@ def maiorValor(dados):
 
 #função que calcula os dias em que o valor foi maior que a média mensal.
 def maioresQueAMedia(dados,media):
+  quantidade = 0
   for dado in dados:
     if dado['valor'] != 0.0:
       if(dado['valor'] > media):
-        print('O valor no dia',dado['dia'],'é maior que a média')
+        quantidade += 1
+  return quantidade
 
 
 if(__name__ == '__main__'):
@@ -61,8 +61,8 @@ if(__name__ == '__main__'):
   media = calcMedia(dados)
   menor = menorValor(dados)
   maior = maiorValor(dados)
-  print(menor)
-  print(maior)
-  print(media)
-  maioresQueAMedia(dados,media)
+  print('O menor valor é:',menor[ 'valor'])
+  print('O maior valor é:',maior['valor'])
+  quantidade = maioresQueAMedia(dados,media)
+  print('A quantidade de dias em que o valor é superior a média é:',quantidade,'dias')
   
