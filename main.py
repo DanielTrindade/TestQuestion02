@@ -23,7 +23,7 @@ def calcMenor(dados):
   while(menor['valor'] == 0.0):
     menor = dados[pos]
     pos += 1
-  #verifica o menor de fato ignorando os valores
+  #verifica o menor de fato ignorando os valores 0.0(zero)
   for dado in dados[(pos + 1):]:
     if dado['valor'] != 0.0:
       if(menor['valor'] > dado['valor']):
@@ -31,10 +31,28 @@ def calcMenor(dados):
 
   return menor
 
+#função para encontrar o maior valor no mês
+def calcMaior(dados):
+  #retorna o primeiro valor que não é 0.0(Zero)
+  maior = dados[0]
+  pos = 0
+  while(maior['valor'] == 0.0):
+    maior = dados[pos]
+    pos += 1
+  #verifica o maior de fato ignorando os valores 0.0(zero)
+  for dado in dados[(pos + 1):]:
+    if dado['valor'] != 0.0:
+      if(maior['valor'] < dado['valor']):
+        maior = dado
+
+  return maior
+
 
 if(__name__ == '__main__'):
   with open("dados.json", encoding='utf-8') as meu_json:
       dados = json.load(meu_json)
   media = calcMedia(dados)
   menor = calcMenor(dados)
-  print(menor)
+  maior = calcMaior(dados)
+  print(maior)
+  print(media)
